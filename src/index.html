@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Electron Demo</title>
+    <link rel="stylesheet" href="bootstrap.css" />
+</head>
+
+<body>
+    <h1 class="title">Electron Demo App</h1>
+    <div class="d-flex flex-column">
+        <button class="btn" id="capture-btn">Take screenshot</button>
+        <div id="count"></div>
+        <input type="text" id="git-dir" class="form-control" placeholder="git status ~/directory" />
+        <button class="btn" id="check-git-status-btn">Check git status</button>
+        <div id="git-status"></div>
+    </div>
+    <div>
+        We are using node
+        <script>document.write(process.versions.node)</script>, Chrome
+        <script>document.write(process.versions.chrome)</script>, and Electron
+        <script>document.write(process.versions.electron)</script>.
+    </div>
+    <script>require('./listener.js')</script>
+    <script>require('./capture.js')</script>
+    <script>require('./git-status.js')</script>    
+</body>
+
+</html>
