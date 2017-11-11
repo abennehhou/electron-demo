@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="bootstrap.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-center">
+            <img src="" id="about-img" class="img-fluid" alt="About">
+        </div>
+        <dl class="row">
+            <dt class="col-sm-3">Application</dt>
+            <dd class="col-sm-9">Electron Demo App</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-3">Node</dt>
+            <dd class="col-sm-9">
+                <script>document.write(process.versions.node)</script>
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-3">Chrome</dt>
+            <dd class="col-sm-9">
+                <script>document.write(process.versions.chrome)</script>
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-3">Electron</dt>
+            <dd class="col-sm-9">
+                <script>document.write(process.versions.electron)</script>
+            </dd>
+        </dl>
+    </div>
+    <script>require('./about.js')</script>
+</body>
+
+</html>

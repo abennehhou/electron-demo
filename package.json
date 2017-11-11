@@ -6,7 +6,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . --platform=win32 --arch=x64 --icon=app",
+    "build": "electron-packager . --platform=win32 --arch=x64 --icon=app --out=build/ --overwrite=true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -1,42 +1,14 @@
 const { app, BrowserWindow, Tray, Menu, ipcMain } = require('electron')
-
 const path = require('path')
 const url = require('url')
+const screenshots = require('./screenshots')
+const menuTemplate = require('./menu')
 
 const name = app.getName()
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
-
-let menuTemplate = [
-  {
-    label: name,
-    submenu: [
-      {
-        label: `About ${name}`,
-        role: 'about'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Minimize',
-        role: 'minimize'
-      },
-      {
-        label: 'Quit',
-        accelerator: 'Ctrl+Q',
-        click: function () { app.quit() }
-      }]
-  },
-  {
-    label: 'Another',
-    submenu: [{
-      label: 'Sub-Menu'
-    }]
-  }
-]
 
 function createWindow() {
   // Create the browser window.
@@ -52,25 +24,21 @@ function createWindow() {
     protocol: 'file:',
     slashes: true
   }))
+  screenshots.mkdir(screenshots.getScreenshotsDir(app))
 
   // Open the DevTools.
   //win.webContents.openDevTools()
 
   // Add menu
-  const menu = Menu.buildFromTemplate(menuTemplate)
+  const menu = Menu.buildFromTemplate(menuTemplate(win))
   Menu.setApplicationMenu(menu)
 
   // Add systray
   const tray = new Tray(`${__dirname}/trayIcon.png`);
-  //const tray = new Tray(path.join('src', 'trayIcon.png'))
   const trayMenu = Menu.buildFromTemplate([
     {
-      label: 'Menu button1',
-      click: _ => console.log('Menu button1')
-    },
-    {
-      label: 'Menu button2',
-      click: _ => console.log('Menu button2')
+      label: 'Quit',
+      click: function () { app.quit() }
     }
   ])
   tray.setToolTip(name)
@@ -122,7 +90,7 @@ ipcMain.on('capture-start', _ => {
     win.webContents.send('countdown', current)
     if (count === -1) {
       clearInterval(timer)
-      win.webContents.send('capture', app.getPath('pictures'))
+      win.webContents.send('capture', screenshots.getScreenshotsDir(app))
     }
   }, 1000)
 })
