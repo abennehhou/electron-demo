@@ -1,11 +1,14 @@
-const electron = require('electron')
+const electron = require('electron');
 
-const ipc = electron.ipcRenderer
+const ipc = electron.ipcRenderer;
 
 document.getElementById('capture-btn').addEventListener('click', _ => {
-    ipc.send('capture-start')
-})
+    ipc.send('capture-start');
+});
 
-ipc.on('countdown', (evt, count) => {
-    document.getElementById('count').innerHTML = 'screenshot countdown: ' + count
+ipc.on('countdown', (evt, count, isDone) => {
+    document.getElementById('countdown-msg').innerHTML = `Countdown: ${count}`;
+    if (isDone) {
+        document.getElementById('countdown-msg').innerHTML = 'Countdown ended, check screenshot directory.';
+    }
 })

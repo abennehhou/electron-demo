@@ -1,9 +1,9 @@
-const electron = require('electron')
-const screenshots = require('./screenshots')
-const path = require('path')
+const electron = require('electron');
+const screenshots = require('./screenshots');
+const path = require('path');
 
-const { app, BrowserWindow } = electron
-const name = app.getName()
+const { app, BrowserWindow } = electron;
+const name = app.getName();
 
 function openAboutWindow() {
     let aboutWindow = new BrowserWindow({
@@ -17,7 +17,7 @@ function openAboutWindow() {
 
     aboutWindow.setMenu(null);
 
-    aboutWindow.loadURL('file://' + __dirname + '/about.html');
+    aboutWindow.loadURL(`file://${__dirname}/about.html`);
 
     aboutWindow.on('closed', function () {
         aboutWindow = null;
@@ -55,8 +55,7 @@ module.exports = mainWindow => {
                 }
             ]
         }
-    ]
-
+    ];
 
     return template
 }
