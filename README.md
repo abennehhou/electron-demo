@@ -1,6 +1,8 @@
 # electron-demo
 Example of desktop application using Electron.
 
+This example is based on Pluralsight course [Electron Fundamentals](https://app.pluralsight.com/library/courses/electron-fundamentals/table-of-contents).
+
 ### Run the application
 From project directory, open command line and run: `npm start`.
 
